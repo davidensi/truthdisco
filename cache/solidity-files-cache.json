@@ -1,0 +1,73 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "/home/davidensi/code/truthdisco/contracts/Reputations.sol": {
+      "lastModificationDate": 1625117237445,
+      "contentHash": "777a7f013c4aaefc855d855a562339e5",
+      "sourceName": "contracts/Reputations.sol",
+      "solcConfig": {
+        "version": "0.7.3",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "0.7.3"
+      ],
+      "artifacts": [
+        "Reputations"
+      ]
+    },
+    "/home/davidensi/code/truthdisco_2/contracts/Reputations.sol": {
+      "lastModificationDate": 1626780246744,
+      "contentHash": "b02b449402b92704fe0cde9afda7ffcf",
+      "sourceName": "contracts/Reputations.sol",
+      "solcConfig": {
+        "version": "0.7.3",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "0.7.3"
+      ],
+      "artifacts": [
+        "Reputations"
+      ]
+    }
+  }
+}
