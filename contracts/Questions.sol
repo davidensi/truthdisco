@@ -1,5 +1,7 @@
-pragma solidity 0.7.3;
-pragma experimental ABIEncoderV2;
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.4;
+/* pragma experimental ABIEncoderV2; */
+pragma abicoder v2;
 
 
 //This should be a single contract.
@@ -67,6 +69,13 @@ contract Questions {
 
     _questions[qId].ansCount++;
 
+  }
+
+  function closeQuestion(uint qId) public returns (bool) {
+    _questions[qId].active = false;
+
+    //emit a closure event
+    return true;
   }
 
 }

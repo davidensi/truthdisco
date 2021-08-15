@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const contracts = ["Reputations"];
+const contracts = ["TruthDisco"];
 
 async function publishContract(contractName, chainId) {
   const contractFactory = await ethers.getContractFactory(contractName);
