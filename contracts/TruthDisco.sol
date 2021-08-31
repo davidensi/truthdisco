@@ -5,24 +5,27 @@ pragma abicoder v2;
 
 import './Reputations.sol';
 import './Questions.sol';
-import './Tokens/DiscoCoin.sol';
+/* import './Tokens/DiscoCoin.sol'; */
 
 contract TruthDisco {
 
   address _owner;
 
   //Reputation ledger
-  Reputations _reputations = new Reputations();
+  Reputations _reputations;
 
   //Questions record
-  Questions _questions = new Questions();
+  Questions _questions;
 
   //Reward tokens
-  ERC20 _tokens = new ERC20("DiscoCoin", "DSC");
+  address _tokenAddr;
 
 
-  constructor() {
+  constructor(address tokenAddress) {
     _owner = msg.sender;
+    _reputations = new Reputations();
+    _questions = new Questions();
+    _tokenAddr = tokenAddress;
 
 
   }

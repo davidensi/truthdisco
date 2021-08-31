@@ -31,7 +31,7 @@ import "./../utils/Context.sol";
  * functions have been added to mitigate the well-known issues around setting
  * allowances. See {IERC20-approve}.
  */
-contract ERC20 is Context, IERC20, IERC20Metadata {
+contract DiscoCoin is Context, IERC20, IERC20Metadata {
     mapping(address => uint256) private _balances;
 
     mapping(address => mapping(address => uint256)) private _allowances;
@@ -41,6 +41,7 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
     string private _name;
     string private _symbol;
 
+    event Deployment(address _location);
     /**
      * @dev Sets the values for {name} and {symbol}.
      *
@@ -238,6 +239,8 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
 
         _afterTokenTransfer(sender, recipient, amount);
     }
+
+
 
     /** @dev Creates `amount` tokens and assigns them to `account`, increasing
      * the total supply.

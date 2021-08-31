@@ -1,11 +1,12 @@
 const fs = require('fs');
 const path = require('path');
 
-const contracts = ["TruthDisco"];
+// const contracts = ["TruthDisco"];
 
-async function publishContract(contractName, chainId) {
-  const contractFactory = await ethers.getContractFactory(contractName);
-  const contract = await contractFactory.deploy();
+async function publishContract(contract, contractName, chainId) {
+  // const contractFactory = await ethers.getContractFactory(contractName);
+  // const contract = await contractFactory.deploy();
+
 
   console.log(contractName + " contract address: " + contract.address);
 
@@ -45,6 +46,7 @@ async function publishContract(contractName, chainId) {
 
 
 async function main() {
+
   const [deployer] = await ethers.getSigners();
 
   let networkData = await deployer.provider.getNetwork()
@@ -57,9 +59,21 @@ async function main() {
 
   console.log("Account balance:", (await deployer.getBalance()).toString());
 
-  for (cont of contracts) {
-    await publishContract(cont, networkData.chainId);
-  }
+  /* The token doesn't need publishing as it will be managed by the td contract
+  ** The address will need to be added to the wallet */
+  const tokenFactory = await ethers.getContractFactory("DiscoCoin");
+  const tokenContract = await tokenFactory.deploy("DiscoCoin", "DSC");
+
+  console.log(
+    "DiscoCoin deployed to address: ",
+    tokenContract.address
+  );
+
+  const tdName = "TruthDisco";
+  const tdFactory = await ethers.getContractFactory(tdName);
+  const tdContract = await tdFactory.deploy(tokenContract.address);
+  await publishContract(tdContract, tdName, networkData.chainId);
+
 
 }
 
