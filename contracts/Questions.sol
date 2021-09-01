@@ -9,8 +9,8 @@ import "hardhat/console.sol";
 contract Questions {
 
   struct Answer {
-    address submittedBy;
     //The actual submission will be encrypted
+    address submittedBy;
     string submission;
   }
 
@@ -52,7 +52,7 @@ contract Questions {
 
   //scanSubmissions
   //**public view
-   function scanSubmissions(uint qId) public view returns (Answer[] memory ) {
+   function scanSubmissions(uint qId) public view returns (Answer[] memory) {
     uint size = _questions[qId].ansCount;
     Answer[] memory submissions = new Answer[](size);
     for(uint i = 0; i < size; i++) {

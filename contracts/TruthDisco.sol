@@ -14,6 +14,7 @@ import "hardhat/console.sol";
 ** to the child-contracts **/
 contract TruthDisco {
 
+
   address _owner;
 
   //Reputation ledger
@@ -23,7 +24,7 @@ contract TruthDisco {
   Questions _questions;
 
   //Reward tokens
-  address _tokenAddr;
+  address public _tokenAddr;
 
 
 
@@ -61,6 +62,11 @@ contract TruthDisco {
     console.log("Closing question: %s", qId);
   }
 
+  function checkAnswers(uint qId) public view returns (Questions.Answer[] memory) {
+
+    return _questions.scanSubmissions(qId);
+
+  }
 
   /* Returns true if the question is ready to be closed (according
   ** to the reputation of the answers submitted so far) */

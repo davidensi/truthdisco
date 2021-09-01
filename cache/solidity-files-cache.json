@@ -70,8 +70,8 @@
       ]
     },
     "/home/davidensi/code/truthdisco_2/contracts/Questions.sol": {
-      "lastModificationDate": 1630469240721,
-      "contentHash": "189a4e9b054532a1b34a01a487288f37",
+      "lastModificationDate": 1630475244551,
+      "contentHash": "cae88aeff78c7b586984aeda379233b9",
       "sourceName": "contracts/Questions.sol",
       "solcConfig": {
         "version": "0.8.4",
@@ -106,8 +106,8 @@
       ]
     },
     "/home/davidensi/code/truthdisco_2/contracts/TruthDisco.sol": {
-      "lastModificationDate": 1630469226833,
-      "contentHash": "a067881add33038f3143d3bf43807c99",
+      "lastModificationDate": 1630475241751,
+      "contentHash": "ea3df599265a01c7d0c1c7389bbaf4ab",
       "sourceName": "contracts/TruthDisco.sol",
       "solcConfig": {
         "version": "0.8.4",
