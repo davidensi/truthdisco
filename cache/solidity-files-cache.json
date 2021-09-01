@@ -70,8 +70,8 @@
       ]
     },
     "/home/davidensi/code/truthdisco_2/contracts/Questions.sol": {
-      "lastModificationDate": 1629001799813,
-      "contentHash": "263c637ae6da1555e49313a24651b8c8",
+      "lastModificationDate": 1630469240721,
+      "contentHash": "189a4e9b054532a1b34a01a487288f37",
       "sourceName": "contracts/Questions.sol",
       "solcConfig": {
         "version": "0.8.4",
@@ -95,7 +95,9 @@
           }
         }
       },
-      "imports": [],
+      "imports": [
+        "hardhat/console.sol"
+      ],
       "versionPragmas": [
         "0.8.4"
       ],
@@ -104,8 +106,8 @@
       ]
     },
     "/home/davidensi/code/truthdisco_2/contracts/TruthDisco.sol": {
-      "lastModificationDate": 1630369071195,
-      "contentHash": "c5deb23175e58f90c8451c76e9a3d823",
+      "lastModificationDate": 1630469226833,
+      "contentHash": "a067881add33038f3143d3bf43807c99",
       "sourceName": "contracts/TruthDisco.sol",
       "solcConfig": {
         "version": "0.8.4",
@@ -131,7 +133,8 @@
       },
       "imports": [
         "./Reputations.sol",
-        "./Questions.sol"
+        "./Questions.sol",
+        "hardhat/console.sol"
       ],
       "versionPragmas": [
         "0.8.4"
@@ -280,6 +283,40 @@
       ],
       "artifacts": [
         "IERC20Metadata"
+      ]
+    },
+    "/home/davidensi/code/truthdisco_2/node_modules/hardhat/console.sol": {
+      "lastModificationDate": 1625460086750,
+      "contentHash": "cc4777addd464ea56fa35b1c45df0591",
+      "sourceName": "hardhat/console.sol",
+      "solcConfig": {
+        "version": "0.8.4",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.4.22 <0.9.0"
+      ],
+      "artifacts": [
+        "console"
       ]
     }
   }

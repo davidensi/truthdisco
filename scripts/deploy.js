@@ -1,12 +1,10 @@
 const fs = require('fs');
 const path = require('path');
 
-// const contracts = ["TruthDisco"];
 
+/* publishContract places the contract data in the frontend directory so
+** the web app can access it */
 async function publishContract(contract, contractName, chainId) {
-  // const contractFactory = await ethers.getContractFactory(contractName);
-  // const contract = await contractFactory.deploy();
-
 
   console.log(contractName + " contract address: " + contract.address);
 
@@ -47,7 +45,7 @@ async function publishContract(contract, contractName, chainId) {
 
 async function main() {
 
-  const [deployer] = await ethers.getSigners();
+  const deployer = await ethers.getSigner(0);
 
   let networkData = await deployer.provider.getNetwork()
   console.log("Chain ID:", networkData.chainId);

@@ -4,6 +4,7 @@ pragma solidity 0.8.4;
 pragma abicoder v2;
 
 
+import "hardhat/console.sol";
 //This should be a single contract.
 contract Questions {
 
@@ -19,6 +20,7 @@ contract Questions {
     uint ansCount;
   }
 
+  event QuestionCreated(uint _questionId, string _stimulus);
 
   /* _questions[i] gets the Question struct for question with ID i */
   mapping (uint => Question) private _questions;
@@ -34,13 +36,17 @@ contract Questions {
   // TODO need to add **Permission**
   //This should emit an event
   function initQuestion(string memory stim) public {
+    //Permissions check done in api method
 
-    /* Question memory newQ = Question(true, stim, 0); */
+    console.log("questionID: %s", _numQuestions);
     _questions[_numQuestions] = Question(true, stim, 0);
 
+
     //Emit event "New question opened"
+    emit QuestionCreated(_numQuestions, stim);
 
     _numQuestions++;
+    console.log("Question count: %s", _numQuestions);
 
   }
 
@@ -59,8 +65,9 @@ contract Questions {
   //submitAnswer
   //**public transaction
   function submitAnswer(uint qId, address user, string memory sub) public {
+    require(qId < _numQuestions, "Invalid question ID - question does not exist");
+    require(_questions[qId].active , "Invalid question ID - question has been closed");
 
-    /*TODO Check if a question is closed first*/
 
     /* Answer memory newAns = Answer(user, sub); */
     _answers[qId][_questions[qId].ansCount] = Answer(user, sub);
@@ -71,11 +78,19 @@ contract Questions {
 
   }
 
-  function closeQuestion(uint qId) public returns (bool) {
+  function processRewards() private {
+
+    console.log("processing rewards....");
+    //emit a reward event
+  }
+
+  function closeQuestion(uint qId) public {
+    //persmission check in interface method
     _questions[qId].active = false;
 
+    processRewards();
+
     //emit a closure event
-    return true;
   }
 
 }
