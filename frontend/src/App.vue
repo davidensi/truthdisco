@@ -1,20 +1,23 @@
 <template>
   <nav-bar></nav-bar>
   <status></status>
-  <reputation></reputation>
+  <administrator></administrator>
+  <user></user>
 </template>
 
 <script>
 import NavBar from './components/NavBar.vue';
 import Status from './components/Status.vue';
-import Reputation from './components/Reputation.vue';
+import Administrator from './components/Administrator.vue';
+import User from './components/User.vue';
 
 export default {
   name: 'App',
   components: {
     NavBar,
     Status,
-    Reputation
+    Administrator,
+    User,
   }
 }
 </script>

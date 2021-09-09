@@ -1,11 +1,11 @@
 <template>
   <div>
+    <h3>Metamask debug</h3>
     <div v-if="!isUserConnected">
-      <h2>You aren't connected</h2>
+      <div>You aren't connected</div>
     </div>
     <div v-if="isUserConnected">
-      <h3>You are connected.  Your account address is: </h3>
-      <h3>{{ getActiveAccount }}</h3>
+      <div>You are connected.  Your account address is: {{ getActiveAccount }}</div>
 
     </div>
   </div>

@@ -3,73 +3,89 @@ import { ethers } from 'ethers';
 import addresses from '../../contracts/addresses.json';
 
 //List contracts here
-import Reputations from '../../contracts/Reputations.json';
+import TruthDisco from '../../contracts/TruthDisco.json';
 
 const state = {
-  reputation: 0,
+  // reputation: 0,
+  owner: '',
 }
 
 const getters = {
-  getReputation(state) {
-    return state.reputation;
+  getOwner(state) {
+    return state.owner;
   },
 
 
 }
 
 const mutations = {
-  setReputation(state, reputation) {
-    state.reputation = reputation;
-  },
+  setOwner(state, ownerAddr) {
+    state.owner = ownerAddr;
+  }
+  // setReputation(state, reputation) {
+    // state.reputation = reputation;
+  // },
 
 
 }
 
 const actions = {
-  // async fetchReputation({commit, rootState}, address, provider) {
-  async fetchReputation({commit, rootState}, address) {
-    // let provider = rootState.accounts.providerEthers;
-
+  async fetchOwner({commit, rootState}) {
     let provider = new ethers.providers.Web3Provider(rootState.accounts.providerW3m)
-    console.log(provider);
-    // let signer = provider.getSigner();
-    // console.log(signer);
     let chainIdDec = parseInt(rootState.accounts.chainId);
-    let reputationsAddress = addresses.Reputations[chainIdDec];
+    let tdAddress = addresses.TruthDisco[chainIdDec];
 
-    let contract = new ethers.Contract(reputationsAddress, Reputations.abi, provider);
-    // let reputation = contract.testFunction();
-    // var test = await contract.testFunction();
-    let reputation = await contract.reputationOf(address);
-    // console.log(contract)
-    console.log(reputation);
-    commit("setReputation", reputation);
+    let tdContract = new ethers.Contract(tdAddress, TruthDisco.abi, provider);
+
+    let ownerAddr = await tdContract._owner();
+
+    commit("setOwner", ownerAddr);
+
   },
+  // async fetchReputation({commit, rootState}, address, provider) {
+  // async fetchReputation({commit, rootState}, address) {
+  //   // let provider = rootState.accounts.providerEthers;
+  //
+  //   let provider = new ethers.providers.Web3Provider(rootState.accounts.providerW3m)
+  //   console.log(provider);
+  //   // let signer = provider.getSigner();
+  //   // console.log(signer);
+  //   let chainIdDec = parseInt(rootState.accounts.chainId);
+  //   let reputationsAddress = addresses.Reputations[chainIdDec];
+  //
+  //   let contract = new ethers.Contract(reputationsAddress, Reputations.abi, provider);
+  //   // let reputation = contract.testFunction();
+  //   // var test = await contract.testFunction();
+  //   let reputation = await contract.reputationOf(address);
+  //   // console.log(contract)
+  //   console.log(reputation);
+  //   commit("setReputation", reputation);
+  // },
 
 
 
 
-  async setReputation({commit, rootState}, payload) {
-    let address = payload.address;
-    let value = payload.value;
-    console.log(value)
-    let bnValue = ethers.BigNumber.from(value);
-    console.log(bnValue)
-    let provider = new ethers.providers.Web3Provider(rootState.accounts.providerW3m)
-    let signer = provider.getSigner();
-    console.log(signer)
-    let chainIdDec = parseInt(rootState.accounts.chainId);
-    let reputationsAddress = addresses.Reputations[chainIdDec];
-
-    let contract = new ethers.Contract(reputationsAddress, Reputations.abi, signer);
-
-    await contract.updateReputation(address, bnValue);
-    let reputation = await contract.reputationOf(address);
-    console.log(reputation);
-    commit("setReputation", reputation);
-
-
-  }
+  // async setReputation({commit, rootState}, payload) {
+  //   let address = payload.address;
+  //   let value = payload.value;
+  //   console.log(value)
+  //   let bnValue = ethers.BigNumber.from(value);
+  //   console.log(bnValue)
+  //   let provider = new ethers.providers.Web3Provider(rootState.accounts.providerW3m)
+  //   let signer = provider.getSigner();
+  //   console.log(signer)
+  //   let chainIdDec = parseInt(rootState.accounts.chainId);
+  //   let reputationsAddress = addresses.Reputations[chainIdDec];
+  //
+  //   let contract = new ethers.Contract(reputationsAddress, Reputations.abi, signer);
+  //
+  //   await contract.updateReputation(address, bnValue);
+  //   let reputation = await contract.reputationOf(address);
+  //   console.log(reputation);
+  //   commit("setReputation", reputation);
+  //
+  //
+  // }
 
 
 }

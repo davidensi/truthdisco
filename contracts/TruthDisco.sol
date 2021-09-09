@@ -15,7 +15,7 @@ import "hardhat/console.sol";
 contract TruthDisco {
 
 
-  address _owner;
+  address public _owner;
 
   //Reputation ledger
   Reputations _reputations;
