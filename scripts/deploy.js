@@ -30,11 +30,14 @@ async function publishContract(contract, contractName, chainId) {
   let addressesFile = fs.readFileSync(path.join(__dirname, "../frontend/src/contracts/addresses.json"));
   let addressesJson = JSON.parse(addressesFile);
 
+  console.log(addressesJson)
+
   if (!addressesJson[contractName]) {
     addressesJson[contractName] = {};
   }
 
   addressesJson[contractName][chainId] = contract.address;
+  addressesJson[contractName]["ownerAddr"] = contract.signer.address;
 
   fs.writeFileSync(
     path.join(__dirname, "../frontend/src/contracts/addresses.json"),

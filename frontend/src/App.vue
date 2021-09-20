@@ -6,20 +6,23 @@
 </template>
 
 <script>
-import NavBar from './components/NavBar.vue';
-import Status from './components/Status.vue';
-import Administrator from './components/Administrator.vue';
-import User from './components/User.vue';
+  // import { mapActions, mapGetters } from "vuex";
+  // import { mapGetters } from "vuex";
 
-export default {
-  name: 'App',
-  components: {
-    NavBar,
-    Status,
-    Administrator,
-    User,
+  import NavBar from './components/NavBar.vue';
+  import Status from './components/Status.vue';
+  import Administrator from './components/Administrator.vue';
+  import User from './components/User.vue';
+
+  export default {
+    name: 'App',
+    components: {
+      NavBar,
+      Status,
+      Administrator,
+      User,
+    },
   }
-}
 </script>
 
 <style>

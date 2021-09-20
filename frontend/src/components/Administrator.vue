@@ -1,23 +1,32 @@
 <!-- This should only be shown if connected by the administrator account -->
 <template>
 
-  <h3>hello from admin</h3>
-  <div>Create a question</div>
-  <div>Process question</div>
-  <div>Close quesiton</div>
+  <div v-if="isAdmin">
+    <h3>hello from admin</h3>
+    <div>{{ this.getOwner }} </div>
+    <div>Create a question</div>
+    <div>Process question</div>
+    <div>Close quesiton</div>
+  </div>
+  <button v-on:click="this.fetchOwner">check owner</button>
 
 </template>
 
 <script>
-  // import { mapGetters, mapActions } from "vuex";
+  import { mapGetters } from "vuex";
+  // import { mapActions, mapGetters } from "vuex";
+
   export default {
     name: 'Administrator',
-    // computed: {
-    //   ...mapGetters("accounts", ["getActiveAccount", "getActiveBalance", "getW3Modal"])
-    // },
+    computed: {
+      ...mapGetters("contracts", ["getOwner"]),
+    },
     // methods: {
-      // ...mapActions("contracts", ["fetchReputation", "setReputation"]),
-    // }
+      // ...mapActions("contracts", [ "fetchOwner" ]),
+      // fetchOwner: function() {
+        // console.log("fetchOwner");
+      // }
+
   }
 
 </script>

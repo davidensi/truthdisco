@@ -6,8 +6,8 @@ import addresses from '../../contracts/addresses.json';
 import TruthDisco from '../../contracts/TruthDisco.json';
 
 const state = {
-  // reputation: 0,
-  owner: '',
+
+  owner: addresses.TruthDisco.ownerAddr,
 }
 
 const getters = {
@@ -31,6 +31,7 @@ const mutations = {
 
 const actions = {
   async fetchOwner({commit, rootState}) {
+    console.log("fetchOwner");
     let provider = new ethers.providers.Web3Provider(rootState.accounts.providerW3m)
     let chainIdDec = parseInt(rootState.accounts.chainId);
     let tdAddress = addresses.TruthDisco[chainIdDec];
