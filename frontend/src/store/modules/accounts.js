@@ -1,5 +1,7 @@
 import Web3Modal from 'web3modal';
 import { ethers } from 'ethers';
+import addresses from '../../contracts/addresses.json';
+
 
 
 const state = {
@@ -10,7 +12,8 @@ const state = {
   providerEthers: null,
   isConnected: false,
   providerW3m: null,
-  web3Modal: null
+  web3Modal: null,
+  isAdmin: false
 };
 
 // Getters
@@ -35,6 +38,9 @@ const getters = {
   },
   isUserConnected(state) {
     return state.isConnected;
+  },
+  isAdmin(state) {
+    return state.isAdmin;
   }
 }
 
@@ -51,16 +57,19 @@ const mutations = {
     state.providerW3m = null;
     await state.web3Modal.clearCachedProvider();
 
+
     window.location.href = '../';
   },
 
   setActiveAccount(state, address) {
     state.activeAccount = address;
+    state.isAdmin = state.activeAccount === addresses.TruthDisco.ownerAddr.toLowerCase();
   },
 
   setActiveBalance(state, balance) {
     state.activeBalance = balance
   },
+
   setChainData(state, chainId) {
     state.chainId = chainId;
 
@@ -75,10 +84,12 @@ const mutations = {
     state.providerW3m = providerW3m;
     state.providerEthers = new ethers.providers.Web3Provider(providerW3m);
   },
+
   setIsConnected(state, isConnected) {
     state.isConnected = isConnected;
     localStorage.setItem('isConnected', isConnected);
   },
+
   setWeb3ModalInstance(state, w3Modal) {
     state.web3Modal = w3Modal;
   }
@@ -89,7 +100,7 @@ const mutations = {
 //Actions
 const actions = {
 
-  async initWeb3Modal({ commit }) {
+  async initWeb3Modal({ commit , dispatch }) {
 
     const providerOptions = {
       // This is empty, because only MetaMask is
@@ -112,6 +123,7 @@ const actions = {
     }
 
     commit("setWeb3ModalInstance", w3Modal);
+    dispatch("contracts/getQuestions", null,  { root: true });
 
   },
 

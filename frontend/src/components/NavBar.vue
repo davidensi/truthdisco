@@ -23,7 +23,7 @@
   export default {
     name: "Navbar",
     computed: {
-      ...mapGetters("accounts", ["getActiveAccount", "isUserConnected", "getWeb3Modal"]),
+      ...mapGetters("accounts", ["getActiveAccount", "isUserConnected", "getW3Modal"]),
     },
     created() {
       this.$store.dispatch("accounts/initWeb3Modal");

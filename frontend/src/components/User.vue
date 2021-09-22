@@ -11,15 +11,15 @@
 </template>
 
 <script>
-  // import { mapGetters, mapActions } from "vuex";
+  import { mapGetters } from "vuex";
+  // import { mapActions } from "vuex";
   export default {
     name: 'User',
-    // computed: {
-    //   ...mapGetters("accounts", ["getActiveAccount", "getActiveBalance", "getW3Modal"])
-    // },
-    // methods: {
-      // ...mapActions("contracts", ["fetchReputation", "setReputation"]),
-    // }
+    computed: {
+      ...mapGetters("contracts", ["getQuestionList"])
+    },
+    methods: {
+    }
   }
 
 </script>

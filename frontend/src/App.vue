@@ -1,13 +1,13 @@
 <template>
   <nav-bar></nav-bar>
   <status></status>
-  <administrator></administrator>
+  <administrator v-if="isAdmin"></administrator>
   <user></user>
 </template>
 
 <script>
   // import { mapActions, mapGetters } from "vuex";
-  // import { mapGetters } from "vuex";
+  import { mapGetters } from "vuex";
 
   import NavBar from './components/NavBar.vue';
   import Status from './components/Status.vue';
@@ -22,6 +22,9 @@
       Administrator,
       User,
     },
+    computed: {
+      ...mapGetters("accounts", ["isAdmin"])
+    }
   }
 </script>
 

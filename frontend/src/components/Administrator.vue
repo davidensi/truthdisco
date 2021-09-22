@@ -1,10 +1,9 @@
 <!-- This should only be shown if connected by the administrator account -->
 <template>
 
-  <div v-if="isAdmin">
+  <div >
     <h3>hello from admin</h3>
-    <div>{{ this.getOwner }} </div>
-    <div>Create a question</div>
+    <button v-on:click="createQuestion('this is the stimulus')">Create a question</button>
     <div>Process question</div>
     <div>Close quesiton</div>
   </div>
@@ -14,18 +13,16 @@
 
 <script>
   import { mapGetters } from "vuex";
-  // import { mapActions, mapGetters } from "vuex";
+  import { mapActions } from "vuex";
 
   export default {
     name: 'Administrator',
     computed: {
-      ...mapGetters("contracts", ["getOwner"]),
+      ...mapGetters("contracts", ["getQuestionList"]),
     },
-    // methods: {
-      // ...mapActions("contracts", [ "fetchOwner" ]),
-      // fetchOwner: function() {
-        // console.log("fetchOwner");
-      // }
+    methods: {
+      ...mapActions("contracts", [ "createQuestion" ]),
+    }
 
   }
 

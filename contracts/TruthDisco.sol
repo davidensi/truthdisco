@@ -28,7 +28,6 @@ contract TruthDisco {
 
 
 
-
   constructor(address tokenAddress) {
     _owner = msg.sender;
     _reputations = new Reputations();
@@ -37,6 +36,9 @@ contract TruthDisco {
 
   }
 
+  function getQuestions() public view returns(uint[] memory) {
+    return _questions.getQuestionList();
+  }
 
   function initQuestion(string memory stimulus) public {
     require(msg.sender == _owner, "Only the administrator can create questions");
