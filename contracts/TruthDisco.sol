@@ -33,11 +33,14 @@ contract TruthDisco {
     _reputations = new Reputations();
     _questions = new Questions();
     _tokenAddr = tokenAddress;
-
   }
 
-  function getQuestions() public view returns(uint[] memory) {
+  function getQuestions() public view returns(Questions.Question[] memory) {
     return _questions.getQuestionList();
+  }
+
+  function fetchQuestion(uint qId) public view returns(Questions.Question memory) {
+    return _questions.getQuestion(qId);
   }
 
   function initQuestion(string memory stimulus) public {
@@ -49,6 +52,7 @@ contract TruthDisco {
     console.log("initialising question with stimulus: %s", stimulus );
     _questions.initQuestion(stimulus);
   }
+
 
   function submitAnswer(uint qId, string memory sub) public {
 

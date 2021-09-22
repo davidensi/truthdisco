@@ -30,7 +30,6 @@ const mutations = {
 const actions = {
   async getQuestions({commit, rootState}) {
     //There **has** to be a more concise way to do all this....
-    console.log("getQuestions - vuex");
     const provider = new ethers.providers.Web3Provider(rootState.accounts.providerW3m)
     const chainIdDec = parseInt(rootState.accounts.chainId);
     const tdAddress = addresses.TruthDisco[chainIdDec];
@@ -53,19 +52,31 @@ const actions = {
     // const state
     // window.ethereum.on("message", (message) => {
       // console.log(message);
-      dispatch("getQuestions");
+    dispatch("getQuestions");
     // });
   },
 
-  async fetchQuestion({ commit , rootState }, qId) {
+  // async fetchQuestion({ commit , rootState }, qId) {
+  //   const provider = new ethers.providers.Web3Provider(rootState.accounts.providerW3m)
+  //   const chainIdDec = parseInt(rootState.accounts.chainId);
+  //   const tdAddress = addresses.TruthDisco[chainIdDec];
+  //   const tdContract = new ethers.Contract(tdAddress, TruthDisco.abi, provider);
+  //   const question = await tdContract.fetchQuestion(qId);
+  //
+  //   commit("setFocussed", question);
+  // },
+
+  async submitAnswer({ rootState }, response) {
     const provider = new ethers.providers.Web3Provider(rootState.accounts.providerW3m)
+    const signer = provider.getSigner();
     const chainIdDec = parseInt(rootState.accounts.chainId);
     const tdAddress = addresses.TruthDisco[chainIdDec];
-    const tdContract = new ethers.Contract(tdAddress, TruthDisco.abi, provider);
-    const question = await tdContract.fetchQuestion(qId);
+    const tdContract = new ethers.Contract(tdAddress, TruthDisco.abi, signer);
+    await tdContract.submitAnswer(response.qId, response.text);
 
-    commit("setFocussed", question);
   }
+
+
 
 
 

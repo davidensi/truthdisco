@@ -39,19 +39,22 @@ contract Questions {
   mapping (uint => mapping(uint=>Answer)) private _answers;
 
   //getQuestionList - returns a list of question indices
-  function getQuestionList() public view returns (uint[] memory) {
+  function getQuestionList() public view returns (Question[] memory) {
 
-    uint[] memory activeQs = new uint[](_numActiveQuestions);
+    Question[] memory activeQs = new Question[](_numActiveQuestions);
 
     for(uint i = 0; i < _numActiveQuestions; i++) {
       if(_questions[i].active) {
-        activeQs[i] = _questions[i].id;
+        activeQs[i] = _questions[i];
       }
     }
 
     return activeQs;
   }
 
+  function getQuestion(uint qId) public view returns (Question memory) {
+    return _questions[qId];
+  }
   //initQuestion
   // TODO need to add **Permission**
   //This should emit an event

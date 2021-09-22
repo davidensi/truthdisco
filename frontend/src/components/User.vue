@@ -4,7 +4,17 @@
   <h3>hello from user</h3>
   <div>
     <h4>Question list</h4>
-    <div>**Submit answer to question in list**</div>
+    <ul>
+      <li v-for="(q, key) in this.getQuestionList"
+        :key="key">
+        {{ q[2] }}
+        <button name="answer" v-on:click="submitResponse(q[0])">create submission</button>
+        <input type="text" name="submission" v-model="response">
+
+      </li>
+
+
+    </ul>
   </div>
 
 
@@ -12,14 +22,30 @@
 
 <script>
   import { mapGetters } from "vuex";
-  // import { mapActions } from "vuex";
+  import { mapActions } from "vuex";
   export default {
     name: 'User',
+    data: function() {
+      return {
+        response: '',
+      }
+    },
     computed: {
       ...mapGetters("contracts", ["getQuestionList"])
     },
     methods: {
+      ...mapActions("contracts", [ "submitAnswer" ]),
+      submitResponse: function(qId) {
+        if(this.response != '') {
+          this.submitAnswer({ qId: parseInt(qId), text: this.response} )
+        }
+
+
+      }
     }
   }
 
 </script>
+
+<style>
+</style>

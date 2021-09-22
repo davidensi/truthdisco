@@ -3,25 +3,32 @@
 
   <div >
     <h3>hello from admin</h3>
-    <button v-on:click="createQuestion('this is the stimulus')">Create a question</button>
+    <button v-on:click="processNewQuestion()">Create a question</button>
+    <input type="text" name="stimulus" v-model="stimulus">
     <div>Process question</div>
     <div>Close quesiton</div>
   </div>
-  <button v-on:click="this.fetchOwner">check owner</button>
 
 </template>
 
 <script>
-  import { mapGetters } from "vuex";
+  // import { mapGetters } from "vuex";
   import { mapActions } from "vuex";
 
   export default {
     name: 'Administrator',
-    computed: {
-      ...mapGetters("contracts", ["getQuestionList"]),
+    data: function() {
+      return {
+        stimulus: '',
+      }
     },
     methods: {
       ...mapActions("contracts", [ "createQuestion" ]),
+      processNewQuestion: function() {
+        if(this.stimulus !== '') {
+          this.createQuestion(this.stimulus);
+        }
+      }
     }
 
   }
