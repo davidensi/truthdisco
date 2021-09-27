@@ -1,19 +1,38 @@
 <template>
- <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Hardhat Vue Starter</a>
+ <header class="mdc-top-app-bar">
+   <div class="mdc-top-app-bar__row">
+     <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start"
+        @click="goHome">
+        <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button" aria-label="Open navigation menu">menu</button>
+        <span class="mdc-top-app-bar__title ">TruthDisco</span>
+      </section>
+      <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+        <button class="mdc-button mdc-theme--on-primary mdc-button--touch" @click="goHome">
+          <span class="mdc-button__ripple"></span>
+          <span class="mdc-button__touch"></span>
+          <span class="mdc-button__label">User</span>
+        </button>
+        <button class="mdc-button mdc-theme--on-primary mdc-button--touch" @click="goToAdmin">
+          <span class="mdc-button__ripple"></span>
+          <span class="mdc-button__touch"></span>
+          <span class="mdc-button__label">Administrator</span>
+        </button>
+        <button v-if="isUserConnected" @click="disconnectWeb3Modal" class="material-icons mdc-top-app-bar__action-item mdc-icon-button">link</button>
+        <button v-if="!isUserConnected" @click="connectWeb3Modal" class="material-icons mdc-top-app-bar__action-item mdc-icon-button">link_off</button>
+      </section>
+    </div>
 
-    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
 
-    <ul class="navbar-nav px-3">
+
+    <!-- <ul class="navbar-nav px-3">
       <li class="nav-item text-nowrap">
         <a class="nav-link" href="#" v-if="!isUserConnected" @click="connectWeb3Modal">Connect your wallet</a>
         <a class="nav-link" href="#" v-if="isUserConnected" @click="disconnectWeb3Modal">Disconnect</a>
       </li>
-    </ul>
+    </ul> -->
 
   </header>
+
 
 </template>
 
@@ -31,6 +50,12 @@
     },
     methods: {
       ...mapActions("accounts", ["connectWeb3Modal", "disconnectWeb3Modal"]),
+      goHome: function() {
+        this.$router.push({name: "User"});
+      },
+      goToAdmin: function() {
+        this.$router.push({name: "Admin"});
+      }
     }
   }
 

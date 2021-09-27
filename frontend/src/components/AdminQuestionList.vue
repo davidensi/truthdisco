@@ -1,8 +1,17 @@
 <!-- This should only be shown if connected by the administrator account -->
 <template>
 
-  <h3>User dashboard</h3>
-  <!-- <user-question-list></user-question-list> -->
+  <div>
+    <h4>Question list</h4>
+    <ul>
+      <li v-for="(q, key) in this.getQuestionList"
+        :key="key">
+        {{ q[2] }}
+        <button name="answer" v-on:click="submitResponse(q[0])">Check submission</button>
+        <!-- <input type="text" name="submission" v-model="response"> -->
+      </li>
+    </ul>
+  </div>
 
 
 </template>
@@ -10,13 +19,8 @@
 <script>
   import { mapGetters } from "vuex";
   import { mapActions } from "vuex";
-  import UserQuestionList from './UserQuestionList.vue';
-
   export default {
-    name: 'User',
-    components: {
-      UserQuestionList,
-    },
+    name: 'AdminQuestionList',
     data: function() {
       return {
         response: '',

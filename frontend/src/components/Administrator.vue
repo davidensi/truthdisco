@@ -3,10 +3,16 @@
 
   <div >
     <h3>hello from admin</h3>
-    <button v-on:click="processNewQuestion()">Create a question</button>
+    <button
+      class="mdc-button"
+      v-on:click="createNewQuestion()">
+      <span class="mdc-button__ripple"></span>
+      <span class="mdc-button__touch"></span>
+      <span class="mdc-button__label">Create a question</span></button>
     <input type="text" name="stimulus" v-model="stimulus">
     <div>Process question</div>
     <div>Close quesiton</div>
+    <admin-question-list></admin-question-list>
   </div>
 
 </template>
@@ -15,8 +21,13 @@
   // import { mapGetters } from "vuex";
   import { mapActions } from "vuex";
 
+  import AdminQuestionList from './AdminQuestionList';
+
   export default {
     name: 'Administrator',
+    components: {
+      AdminQuestionList,
+    },
     data: function() {
       return {
         stimulus: '',
@@ -24,13 +35,12 @@
     },
     methods: {
       ...mapActions("contracts", [ "createQuestion" ]),
-      processNewQuestion: function() {
+      createNewQuestion: function() {
         if(this.stimulus !== '') {
           this.createQuestion(this.stimulus);
         }
       }
     }
-
   }
 
 </script>

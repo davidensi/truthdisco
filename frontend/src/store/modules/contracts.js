@@ -35,7 +35,12 @@ const actions = {
     const tdAddress = addresses.TruthDisco[chainIdDec];
     const tdContract = new ethers.Contract(tdAddress, TruthDisco.abi, provider);
     const questions = await tdContract.getQuestions();
-    commit("setQuestions", questions);
+    // await tdContract.getQuestions().wait();
+      // .catch(console.error)
+      // .then((questions) => {
+        commit("setQuestions", questions);
+      // })
+      // commit("setQuestions", questions);
   },
 
   //admin only function
