@@ -1,7 +1,14 @@
 <!-- This should only be shown if connected by the administrator account -->
 <template>
+  <div class="ud-container">
+    <h2 style="margin: 1em;"> Question list </h2>
+    <user-question-card
+    v-for="question in questionList" :key="question.qid"
+      :qid="question.qid"
+      :stimulus="question.stimulus"
+      ></user-question-card>
+  </div>
 
-  <h3>User dashboard</h3>
   <!-- <user-question-list></user-question-list> -->
 
 
@@ -10,16 +17,27 @@
 <script>
   import { mapGetters } from "vuex";
   import { mapActions } from "vuex";
-  import UserQuestionList from './UserQuestionList.vue';
+
+  import UserQuestionCard from './UserQuestionCard';
+
 
   export default {
     name: 'User',
     components: {
-      UserQuestionList,
+      UserQuestionCard,
     },
     data: function() {
       return {
-        response: '',
+        questionList: [
+          {
+            qid: 0,
+            stimulus: "a;lsdkfjasjdkfasdf"
+          },
+          {
+            qid: 1,
+            stimulus: "kljhnmbdkfasdf"
+          }
+        ]
       }
     },
     computed: {
@@ -39,5 +57,16 @@
 
 </script>
 
-<style>
+<style scoped>
+/* User Dashboard container*/
+.ud-container {
+  padding: 20px;
+}
+
+.question-card {
+  /* margin: 25px; */
+  /* padding: 16px; */
+  /* width: 350px; */
+  /* height: 350px; */
+}
 </style>

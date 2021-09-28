@@ -1,39 +1,14 @@
 <template>
- <header class="mdc-top-app-bar">
-   <div class="mdc-top-app-bar__row">
-     <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start"
-        @click="goHome">
-        <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button" aria-label="Open navigation menu">menu</button>
-        <span class="mdc-top-app-bar__title ">TruthDisco</span>
-      </section>
-      <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
-        <button class="mdc-button mdc-theme--on-primary mdc-button--touch" @click="goHome">
-          <span class="mdc-button__ripple"></span>
-          <span class="mdc-button__touch"></span>
-          <span class="mdc-button__label">User</span>
-        </button>
-        <button class="mdc-button mdc-theme--on-primary mdc-button--touch" @click="goToAdmin">
-          <span class="mdc-button__ripple"></span>
-          <span class="mdc-button__touch"></span>
-          <span class="mdc-button__label">Administrator</span>
-        </button>
-        <button v-if="isUserConnected" @click="disconnectWeb3Modal" class="material-icons mdc-top-app-bar__action-item mdc-icon-button">link</button>
-        <button v-if="!isUserConnected" @click="connectWeb3Modal" class="material-icons mdc-top-app-bar__action-item mdc-icon-button">link_off</button>
-      </section>
-    </div>
-
-
-
-    <!-- <ul class="navbar-nav px-3">
-      <li class="nav-item text-nowrap">
-        <a class="nav-link" href="#" v-if="!isUserConnected" @click="connectWeb3Modal">Connect your wallet</a>
-        <a class="nav-link" href="#" v-if="isUserConnected" @click="disconnectWeb3Modal">Disconnect</a>
-      </li>
-    </ul> -->
-
-  </header>
-
-
+  <Toolbar>
+    <template #left>
+      <h2 class="">TruthDisco</h2>
+    </template>
+    <template #right>
+      <SplitButton v-bind:label="current.label" v-bind:icon="current.icon" :model="menuItems" class="" style="width: 10em"></SplitButton>
+      <Button v-if="!isUserConnected" @click="connectWeb3Modal" label="Connect" icon="pi pi-link"  style="width: 10em; margin-left:.5em" class="p-button-help" />
+      <Button v-if="isUserConnected" @click="disconnectWeb3Modal" label="Disconnect" icon="pi pi-times" style="width: 10em; margin-left:.5em" class="p-button-danger " />
+    </template>
+  </Toolbar>
 </template>
 
 <script>
@@ -41,8 +16,52 @@
 
   export default {
     name: "Navbar",
+    components: {
+
+    },
+    data: function() {
+      return {
+        menuItems: [
+          {
+            label: 'User dashboard',
+            icon: 'pi pi-user',
+            command: () => {
+              this.$router.push({ name: "User" });
+              this.current = {
+                label: 'User',
+                icon: 'pi pi-user',
+              }
+            }
+          },
+          {
+            label: 'Administrator',
+            icon: 'pi pi-cog',
+            command: () =>  {
+              this.$router.push({ name: "Admin" });
+              this.current = {
+                label: 'Admin',
+                icon: 'pi pi-cog',
+              }
+            }
+          }
+        ]
+      }
+    },
     computed: {
       ...mapGetters("accounts", ["getActiveAccount", "isUserConnected", "getW3Modal"]),
+      current() {
+        if(this.$route.name === 'User') {
+          return {
+            label: 'User',
+            icon: 'pi pi-user',
+          };
+        } else {
+          return {
+            label: 'Admin',
+            icon: 'pi pi-cog',
+          };
+        }
+      }
     },
     created() {
       this.$store.dispatch("accounts/initWeb3Modal");
@@ -61,6 +80,6 @@
 
 </script>
 
-<style>
+<style scoped>
 
 </style>

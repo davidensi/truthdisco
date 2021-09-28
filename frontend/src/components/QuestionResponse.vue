@@ -1,18 +1,11 @@
-<!-- This should only be shown if connected by the administrator account -->
 <template>
 
-  <div>
-    <h4>Question list</h4>
-    <ul>
-      <li v-for="(q, key) in this.getQuestionList"
-        :key="key">
-        {{ q[2] }}
-        <button name="answer" v-on:click="submitResponse(q[0])">create submission</button>
-        <input type="text" name="submission" v-model="response">
+  <Panel>
+    <template #header>
+      Submit a response
+    </template>
 
-      </li>
-    </ul>
-  </div>
+  </Panel>
 
 
 </template>
@@ -21,7 +14,7 @@
   import { mapGetters } from "vuex";
   import { mapActions } from "vuex";
   export default {
-    name: 'UserQuestionList',
+    name: 'QuestionReponse',
     data: function() {
       return {
         response: '',
