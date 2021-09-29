@@ -1,16 +1,16 @@
 <!-- This should only be shown if connected by the administrator account -->
 <template>
 
-  <Card class="uq-card">
+  <Card class="uq-card p-lg-8 p-lg-offset-2">
     <template #title>
-      QuestionID: {{ qid }}
+      QuestionID: {{ qId }}
     </template>
     <template #subtitle>
       {{ stimulus }}
     </template>
     <template #footer>
-      <div align="right">
-        <Button label="Submit response" class="p-button-sm" />
+      <div align="right" class="p-grid">
+        <Button @click="goToQResponse" label="Submit response" class="p-col-12 p-button-sm" />
       </div>
     </template>
   </Card>
@@ -24,7 +24,7 @@
   export default {
     name: 'UserQuestionCard',
     props: {
-      qid: Number,
+      qId: Number,
       stimulus: String
     },
     data: function() {
@@ -37,6 +37,9 @@
     },
     methods: {
       ...mapActions("contracts", [ "submitAnswer" ]),
+      goToQResponse: function() {
+        this.$router.push({ name: 'QuestionResponse', params: { qId: this.qId }});
+      }
     }
   }
 

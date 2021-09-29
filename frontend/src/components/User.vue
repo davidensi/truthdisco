@@ -3,8 +3,8 @@
   <div class="ud-container">
     <h2 style="margin: 1em;"> Question list </h2>
     <user-question-card
-    v-for="question in questionList" :key="question.qid"
-      :qid="question.qid"
+    v-for="question in questionList" :key="question.qId"
+      :qId="question.qId"
       :stimulus="question.stimulus"
       ></user-question-card>
   </div>
@@ -30,11 +30,11 @@
       return {
         questionList: [
           {
-            qid: 0,
+            qId: 0,
             stimulus: "a;lsdkfjasjdkfasdf"
           },
           {
-            qid: 1,
+            qId: 1,
             stimulus: "kljhnmbdkfasdf"
           }
         ]
