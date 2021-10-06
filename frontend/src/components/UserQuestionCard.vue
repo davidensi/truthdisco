@@ -38,7 +38,8 @@
     methods: {
       ...mapActions("contracts", [ "submitAnswer" ]),
       goToQResponse: function() {
-        this.$router.push({ name: 'QuestionResponse', params: { qId: this.qId }});
+        console.log(this.qId)
+        this.$router.push({ name: 'QuestionResponse', params: { qId: parseInt(this.qId), stimulus: this.stimulus }});
       }
     }
   }

@@ -1,46 +1,46 @@
 <!-- This should only be shown if connected by the administrator account -->
 <template>
 
-  <div >
-    <h3>hello from admin</h3>
-    <button
-      class="mdc-button"
-      v-on:click="createNewQuestion()">
-      <span class="mdc-button__ripple"></span>
-      <span class="mdc-button__touch"></span>
-      <span class="mdc-button__label">Create a question</span></button>
-    <input type="text" name="stimulus" v-model="stimulus">
-    <div>Process question</div>
-    <div>Close quesiton</div>
-    <admin-question-list></admin-question-list>
+  <create-question></create-question>
+  <div class="ud-container">
+    <h2 style="margin: 1em;"> Question list </h2>
+    <admin-question-card
+    v-for="question in getQuestionList" :key="question.qId"
+      :qId="question.id.toNumber()"
+      :stimulus="question.stimulus"
+      ></admin-question-card>
   </div>
+
+
 
 </template>
 
 <script>
-  // import { mapGetters } from "vuex";
-  import { mapActions } from "vuex";
+  import { mapGetters } from "vuex";
+  // import { mapActions } from "vuex";
 
-  import AdminQuestionList from './AdminQuestionList';
+  import AdminQuestionCard from './AdminQuestionCard';
+  import CreateQuestion from './CreateQuestion';
 
   export default {
     name: 'Administrator',
     components: {
-      AdminQuestionList,
+      AdminQuestionCard,
+      CreateQuestion,
     },
     data: function() {
       return {
-        stimulus: '',
       }
     },
+    computed: {
+      ...mapGetters("contracts", ["getQuestionList"])
+    },
     methods: {
-      ...mapActions("contracts", [ "createQuestion" ]),
-      createNewQuestion: function() {
-        if(this.stimulus !== '') {
-          this.createQuestion(this.stimulus);
-        }
-      }
     }
   }
 
 </script>
+
+<style scoped>
+
+</style>

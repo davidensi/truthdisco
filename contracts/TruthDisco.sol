@@ -70,6 +70,7 @@ contract TruthDisco {
 
   function checkAnswers(uint qId) public view returns (Questions.Answer[] memory) {
 
+    console.log("check answers for question: %s", qId);
     return _questions.scanSubmissions(qId);
 
   }

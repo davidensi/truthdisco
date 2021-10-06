@@ -10,11 +10,12 @@ import SplitButton from 'primevue/splitbutton';
 import Card from 'primevue/card';
 import Panel from 'primevue/panel';
 import Textarea from 'primevue/textarea';
+import InputText from 'primevue/inputtext';
 
 import 'primevue/resources/themes/saga-blue/theme.css';       //theme
 import 'primevue/resources/primevue.min.css';                 //core css
 import 'primeicons/primeicons.css';
-// import 'primeflex/primeflex.css';
+import 'primeflex/primeflex.css';
 
 import store from "./store/index.js";
 import router from "./router/index.js";
@@ -31,5 +32,6 @@ app.component('SplitButton', SplitButton);
 app.component('Card', Card);
 app.component('Panel', Panel);
 app.component('Textarea', Textarea);
+app.component('InputText', InputText);
 
 app.mount('#app')

@@ -3,12 +3,11 @@
 
   <Panel class="qr-panel p-col-10 p-offset-1 p-lg-8 p-lg-offset-2">
     <template #header>
-      Submit a response
+      Submit a response to CID: {{ stimulus }}
     </template>
-      <Textarea v-model="response" class="p-col-12" :autoresize="true">
-      </Textarea>
-
-      <div align="center">
+    <Textarea v-model="response" class="p-col-12" :autoresize="true">
+    </Textarea>
+    <div align="center">
       <Button @click="submitResponse" label="Submit response" class="p-col-4 p-button-sm" />
     </div>
   </Panel>
@@ -25,6 +24,7 @@
     name: 'QuestionReponse',
     props: {
       qId: Number,
+      stimulus: String,
     },
     data: function() {
       return {
@@ -37,10 +37,9 @@
     methods: {
       ...mapActions("contracts", [ "submitAnswer" ]),
       submitResponse: function() {
-        console.log(this.qId);
-        // if(this.response != '') {
-          // this.submitAnswer({ qId: parseInt(qId), text: this.response} )
-        // }
+        if(this.response != '') {
+          this.submitAnswer({ qId: parseInt(this.qId), text: this.response} )
+        }
       }
     }
   }

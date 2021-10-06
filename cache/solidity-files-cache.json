@@ -106,8 +106,8 @@
       ]
     },
     "/home/davidensi/code/truthdisco_2/contracts/TruthDisco.sol": {
-      "lastModificationDate": 1632284708229,
-      "contentHash": "fee8d9097fa9dbbb1406b6676b1d8e0e",
+      "lastModificationDate": 1633494265156,
+      "contentHash": "e6af08cd85abef37d08b2a64b8505cd0",
       "sourceName": "contracts/TruthDisco.sol",
       "solcConfig": {
         "version": "0.8.4",

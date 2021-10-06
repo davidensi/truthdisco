@@ -3,8 +3,8 @@
   <div class="ud-container">
     <h2 style="margin: 1em;"> Question list </h2>
     <user-question-card
-    v-for="question in questionList" :key="question.qId"
-      :qId="question.qId"
+    v-for="question in getQuestionList" :key="question.qId"
+      :qId="question.id.toNumber()"
       :stimulus="question.stimulus"
       ></user-question-card>
   </div>
@@ -28,16 +28,6 @@
     },
     data: function() {
       return {
-        questionList: [
-          {
-            qId: 0,
-            stimulus: "a;lsdkfjasjdkfasdf"
-          },
-          {
-            qId: 1,
-            stimulus: "kljhnmbdkfasdf"
-          }
-        ]
       }
     },
     computed: {
@@ -45,13 +35,13 @@
     },
     methods: {
       ...mapActions("contracts", [ "submitAnswer" ]),
-      submitResponse: function(qId) {
-        if(this.response != '') {
-          this.submitAnswer({ qId: parseInt(qId), text: this.response} )
-        }
+      // submitResponse: function(qId) {
+      //   if(this.response != '') {
+      //     this.submitAnswer({ qId: parseInt(qId.toNumber()), text: this.response} )
+      //   }
+      //
 
-
-      }
+      // }
     }
   }
 

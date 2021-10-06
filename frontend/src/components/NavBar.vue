@@ -50,7 +50,7 @@
     computed: {
       ...mapGetters("accounts", ["getActiveAccount", "isUserConnected", "getW3Modal"]),
       current() {
-        if(this.$route.name === 'User') {
+        if(this.$route.name === 'User' || this.$route.name === 'QuestionResponse') {
           return {
             label: 'User',
             icon: 'pi pi-user',
