@@ -75,6 +75,18 @@ contract TruthDisco {
 
   }
 
+  function processQuestion(uint qId, address[] memory users,
+      uint[] memory rewards, uint[] memory reputation) public {
+    require(msg.sender == _owner, "Only the administrator can allocate rewards");
+    console.log("processing Question %s", qId);
+    /* for(uint i = 0; i < users.length; i++) { */
+      /* _tokenAddr.call(bytes4(keccak256("reward(address, uint)")), users[i], rewards[i]); */
+
+
+    /* } */
+    _questions.closeQuestion(qId);
+  }
+
   /* Returns true if the question is ready to be closed (according
   ** to the reputation of the answers submitted so far) */
   /* function checkQuestion(uint qId) public view returns (bool) {

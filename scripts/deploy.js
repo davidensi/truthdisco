@@ -73,7 +73,14 @@ async function main() {
   const tdName = "TruthDisco";
   const tdFactory = await ethers.getContractFactory(tdName);
   const tdContract = await tdFactory.deploy(tokenContract.address);
+
+  // const publicKey = await .provider.request({
+    // method: 'eth_getEncryptionPublicKey',
+    // params: [tdContract.signer.address],
+  // })
+
   await publishContract(tdContract, tdName, networkData.chainId);
+  await tokenContract.setManager(tdContract.address);
 
 
 }

@@ -5,6 +5,8 @@ import addresses from '../../contracts/addresses.json';
 //List contracts here
 import TruthDisco from '../../contracts/TruthDisco.json';
 
+import enc from '../../plugins/encryption';
+
 const state = {
   questions: [],
   qAnswers: null,
@@ -64,15 +66,26 @@ const actions = {
 
   },
 
+  /** response - object with .qId and .text **/
   async submitAnswer({ rootState }, response) {
+
     const provider = new ethers.providers.Web3Provider(rootState.accounts.providerW3m)
+    // console.log
     const signer = provider.getSigner();
     const chainIdDec = parseInt(rootState.accounts.chainId);
     const tdAddress = addresses.TruthDisco[chainIdDec];
     const tdContract = new ethers.Contract(tdAddress, TruthDisco.abi, signer);
 
+    const publicKey = await rootState.accounts.providerW3m.request({
+      method: 'eth_getEncryptionPublicKey',
+      params: [addresses.TruthDisco.ownerAddr],
+    })
+
+    const packet = await enc.encrypt(signer, publicKey, response.text);
+
+
     /* TODO Response text must be encrypted */
-    await tdContract.submitAnswer(response.qId, response.text);
+    await tdContract.submitAnswer(response.qId, packet);
 
   },
 

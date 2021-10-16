@@ -22,7 +22,7 @@ const getters = {
     return state.activeAccount;
   },
   getActiveBalance(state) {
-    return state.activeBalance;
+    return state.activeBalances;
   },
   getChainId(state) {
     return state.chainId;

@@ -1,6 +1,6 @@
 <template>
   <div class="create-question-card p-grid">
-    <Card class="p-col-6 p-offset-3 ">
+    <Card class="p-ol-6 -offset-3 ">
       <template #title>
         Create a new question
       </template>
@@ -41,7 +41,7 @@
 
 <style scoped>
 .create-question-card {
-  margin-top: 20px;
+  margin: 20px;
 }
 
 </style>

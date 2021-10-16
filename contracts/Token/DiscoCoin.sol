@@ -40,6 +40,10 @@ contract DiscoCoin is Context, IERC20, IERC20Metadata {
 
     string private _name;
     string private _symbol;
+    address private _owner;
+    address private _manager;
+
+
 
     event Deployment(address _location);
     /**
@@ -54,8 +58,13 @@ contract DiscoCoin is Context, IERC20, IERC20Metadata {
     constructor(string memory name_, string memory symbol_) {
         _name = name_;
         _symbol = symbol_;
+        _owner = msg.sender;
     }
 
+    function setManager(address manager) public {
+      require(msg.sender == _owner);
+      _manager = manager;
+    }
     /**
      * @dev Returns the name of the token.
      */
@@ -202,6 +211,11 @@ contract DiscoCoin is Context, IERC20, IERC20Metadata {
         }
 
         return true;
+    }
+
+    function reward(address user, uint value) public {
+      require(msg.sender == _manager, "Only the manager can allocate token rewards");
+      _mint(user, value);
     }
 
     /**

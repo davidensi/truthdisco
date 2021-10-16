@@ -106,8 +106,8 @@
       ]
     },
     "/home/davidensi/code/truthdisco_2/contracts/TruthDisco.sol": {
-      "lastModificationDate": 1633494265156,
-      "contentHash": "e6af08cd85abef37d08b2a64b8505cd0",
+      "lastModificationDate": 1634341211989,
+      "contentHash": "63192ddb7618a1e190984ddc28f4c62a",
       "sourceName": "contracts/TruthDisco.sol",
       "solcConfig": {
         "version": "0.8.4",
@@ -178,8 +178,8 @@
       ]
     },
     "/home/davidensi/code/truthdisco_2/contracts/Token/DiscoCoin.sol": {
-      "lastModificationDate": 1629018277827,
-      "contentHash": "eebf1e1bc3accf8ab09a1ad290943a1e",
+      "lastModificationDate": 1633503206923,
+      "contentHash": "41b17c5a832f40bdc3917fc0983d8573",
       "sourceName": "contracts/Token/DiscoCoin.sol",
       "solcConfig": {
         "version": "0.8.4",
