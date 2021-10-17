@@ -1,20 +1,23 @@
+// import { ethers } from 'ethers';
 const { encrypt } = require("eth-sig-util");
 const { bufferToHex } = require('ethereumjs-util');
 
-// import addresses from '../contracts/addresses.json';
-// import { ethers } from 'ethers';
 
 const encryption = {
   encrypt: async (signer, publicKey, submission) => {
 
-    const signedSubmission = "" + submission;
+    const signedSubmission = await signer.signMessage(submission);
+
+    console.log(signedSubmission);
 
     const packet = bufferToHex(
       Buffer.from(
         JSON.stringify(
           encrypt(
             publicKey,
-            { data: signedSubmission },
+            {
+              data: submission,
+            },
             'x25519-xsalsa20-poly1305',
           )
         ),
@@ -25,6 +28,14 @@ const encryption = {
     return packet;
 
   },
+
+  decrypt: async (packet, provider, address) => {
+    const plain = await provider.request({
+      method: 'eth_decrypt',
+      params: [packet, address]
+    });
+    return plain;
+  }
 }
 
 export default encryption;

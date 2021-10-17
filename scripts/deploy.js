@@ -4,7 +4,7 @@ const path = require('path');
 
 /* publishContract places the contract data in the frontend directory so
 ** the web app can access it */
-async function publishContract(contract, contractName, chainId) {
+async function publishContract(contract, contractName, chainId, publicKey, repRewAddress) {
 
   console.log(contractName + " contract address: " + contract.address);
 
@@ -38,6 +38,8 @@ async function publishContract(contract, contractName, chainId) {
 
   addressesJson[contractName][chainId] = contract.address;
   addressesJson[contractName]["ownerAddr"] = contract.signer.address;
+  addressesJson[contractName]["publicKey"] = publicKey;
+  addressesJson[contractName]["repRewCalc"] = repRewAddress;
 
   fs.writeFileSync(
     path.join(__dirname, "../frontend/src/contracts/addresses.json"),
@@ -65,23 +67,32 @@ async function main() {
   const tokenFactory = await ethers.getContractFactory("DiscoCoin");
   const tokenContract = await tokenFactory.deploy("DiscoCoin", "DSC");
 
+
+  const repRewCalcFactory = await ethers.getContractFactory("RepRewCalculator");
+  const repRewCalcContract = await repRewCalcFactory.deploy();
+  fs.copyFileSync(
+    path.join(__dirname, "../artifacts/contracts/" + "RepRewCalculator" + ".sol/" + "RepRewCalculator" + ".json"), //source
+    path.join(__dirname, "../frontend/src/contracts/" + "RepRewCalculator" + ".json") // destination
+  );
+
+
   console.log(
     "DiscoCoin deployed to address: ",
     tokenContract.address
   );
 
   const tdName = "TruthDisco";
+  const PUBLICKEY = "mtrHp1WHZM9rxF2Ilot9Hie5XmQcKCf7oDQ1DpGkTSI=";
   const tdFactory = await ethers.getContractFactory(tdName);
-  const tdContract = await tdFactory.deploy(tokenContract.address);
+  const tdContract = await tdFactory.deploy(tokenContract.address, PUBLICKEY);
 
   // const publicKey = await .provider.request({
     // method: 'eth_getEncryptionPublicKey',
     // params: [tdContract.signer.address],
   // })
 
-  await publishContract(tdContract, tdName, networkData.chainId);
+  await publishContract(tdContract, tdName, networkData.chainId, PUBLICKEY, repRewCalcContract.address);
   await tokenContract.setManager(tdContract.address);
-
 
 }
 

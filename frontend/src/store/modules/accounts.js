@@ -22,7 +22,7 @@ const getters = {
     return state.activeAccount;
   },
   getActiveBalance(state) {
-    return state.activeBalances;
+    return state.activeBalance;
   },
   getChainId(state) {
     return state.chainId;
@@ -91,6 +91,7 @@ const mutations = {
   },
 
   setWeb3ModalInstance(state, w3Modal) {
+    console.log("trace")
     state.web3Modal = w3Modal;
   }
 
@@ -101,6 +102,7 @@ const mutations = {
 const actions = {
 
   async initWeb3Modal({ commit , dispatch }) {
+  // async initWeb3Modal({ commit  }) {
 
     const providerOptions = {
       // This is empty, because only MetaMask is
@@ -122,6 +124,7 @@ const actions = {
       actions.fetchActiveBalance({ commit });
     }
 
+    console.log("trace")
     commit("setWeb3ModalInstance", w3Modal);
     dispatch("contracts/getQuestions", null,  { root: true });
 
@@ -165,7 +168,6 @@ const actions = {
     let balance = await state.providerEthers.getBalance(state.activeAccount);
     commit("setActiveBalance", balance);
   }
-
 
 }
 

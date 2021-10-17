@@ -48,7 +48,7 @@
       }
     },
     computed: {
-      ...mapGetters("accounts", ["getActiveAccount", "isUserConnected", "getW3Modal"]),
+      ...mapGetters("accounts", ["isUserConnected", "getW3Modal"]),
       current() {
         if(this.$route.name === 'User' || this.$route.name === 'QuestionResponse') {
           return {

@@ -3,8 +3,8 @@ pragma solidity 0.8.4;
 /* pragma experimental ABIEncoderV2; */
 pragma abicoder v2;
 
-import './Reputations.sol';
-import './Questions.sol';
+import './Modules/Reputations.sol';
+import './Modules/Questions.sol';
 
 import "hardhat/console.sol";
 
@@ -26,22 +26,26 @@ contract TruthDisco {
   //Reward tokens
   address public _tokenAddr;
 
+  //Public key - of owner
+  string public _publicKey;
 
 
-  constructor(address tokenAddress) {
+
+  constructor(address tokenAddress, string memory publicKey) {
     _owner = msg.sender;
     _reputations = new Reputations();
     _questions = new Questions();
     _tokenAddr = tokenAddress;
+    _publicKey = publicKey;
   }
 
   function getQuestions() public view returns(Questions.Question[] memory) {
     return _questions.getQuestionList();
   }
 
-  function fetchQuestion(uint qId) public view returns(Questions.Question memory) {
+  /* function fetchQuestion(uint qId) public view returns(Questions.Question memory) {
     return _questions.getQuestion(qId);
-  }
+  } */
 
   function initQuestion(string memory stimulus) public {
     require(msg.sender == _owner, "Only the administrator can create questions");
@@ -56,19 +60,21 @@ contract TruthDisco {
 
   function submitAnswer(uint qId, string memory sub) public {
 
-    _questions.submitAnswer(qId, msg.sender, sub);
+    uint256 rep = _reputations.reputationOf(msg.sender);
+    _questions.submitAnswer(qId, msg.sender, rep, sub);
 
     console.log("User: %s, QuestionID: %s, Submission: %s", msg.sender, qId, sub);
 
   }
 
-  function closeQuestion(uint qId) public {
+  /* function closeQuestion(uint qId) public {
     require(msg.sender == _owner, "Only the administrator can close questions");
     _questions.closeQuestion(qId);
     console.log("Closing question: %s", qId);
   }
-
-  function checkAnswers(uint qId) public view returns (Questions.Answer[] memory) {
+ */
+  function getQuestionSubmissions(uint qId) public view returns (Questions.Answer[] memory) {
+    require(msg.sender == _owner, "Only the administrator can request submissions");
 
     console.log("check answers for question: %s", qId);
     return _questions.scanSubmissions(qId);
@@ -78,6 +84,7 @@ contract TruthDisco {
   function processQuestion(uint qId, address[] memory users,
       uint[] memory rewards, uint[] memory reputation) public {
     require(msg.sender == _owner, "Only the administrator can allocate rewards");
+
     console.log("processing Question %s", qId);
     /* for(uint i = 0; i < users.length; i++) { */
       /* _tokenAddr.call(bytes4(keccak256("reward(address, uint)")), users[i], rewards[i]); */
