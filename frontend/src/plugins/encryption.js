@@ -10,13 +10,23 @@ const encryption = {
 
     console.log(signedSubmission);
 
+    // const obj = {
+    //   sub: submission,
+    //   signedSub: signedSubmission,
+    // }
+
+
+
     const packet = bufferToHex(
       Buffer.from(
         JSON.stringify(
           encrypt(
             publicKey,
             {
-              data: submission,
+              data: JSON.stringify({
+                sub: submission,
+                signedSub: signedSubmission,
+              })
             },
             'x25519-xsalsa20-poly1305',
           )

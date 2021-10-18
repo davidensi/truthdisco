@@ -18,6 +18,7 @@ import Card from 'primevue/card';
 import Panel from 'primevue/panel';
 import Textarea from 'primevue/textarea';
 import InputText from 'primevue/inputtext';
+import FileUpload from 'primevue/fileupload';
 
 import 'primevue/resources/themes/saga-blue/theme.css';       //theme
 import 'primevue/resources/primevue.min.css';                 //core css
@@ -33,6 +34,7 @@ app.component('Card', Card);
 app.component('Panel', Panel);
 app.component('Textarea', Textarea);
 app.component('InputText', InputText);
+app.component('FileUpload', FileUpload);
 
 //Encryption module
 // import VueCryptojs from 'vue-cryptojs';

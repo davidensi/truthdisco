@@ -22,6 +22,7 @@
     "vue-cryptojs": "^2.1.6",
     "vue-router": "^4.0.11",
     "vuex": "^4.0.2",
+    "web3.storage": "^3.3.2",
     "web3modal": "^1.9.3"
   },
   "devDependencies": {

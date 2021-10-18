@@ -36,8 +36,8 @@
       ]
     },
     "/home/davidensi/code/truthdisco_2/contracts/TruthDisco.sol": {
-      "lastModificationDate": 1634434158658,
-      "contentHash": "6157a9eaee38f58afaffd991bc0548a9",
+      "lastModificationDate": 1634526666002,
+      "contentHash": "a67e1d886144a842b364c287c7aabf4d",
       "sourceName": "contracts/TruthDisco.sol",
       "solcConfig": {
         "version": "0.8.4",
@@ -250,8 +250,8 @@
       ]
     },
     "/home/davidensi/code/truthdisco_2/contracts/Modules/Questions.sol": {
-      "lastModificationDate": 1634434045794,
-      "contentHash": "ef5d08451ffedaf599f3f10d190ae7b7",
+      "lastModificationDate": 1634523304398,
+      "contentHash": "fa0e81a9cf195de2aa208f1c5648593d",
       "sourceName": "contracts/Modules/Questions.sol",
       "solcConfig": {
         "version": "0.8.4",
@@ -320,8 +320,8 @@
       ]
     },
     "/home/davidensi/code/truthdisco_2/contracts/RepRewCalculator.sol": {
-      "lastModificationDate": 1634457949812,
-      "contentHash": "3cf7cec35d4aff29213c8437d69204dc",
+      "lastModificationDate": 1634527478899,
+      "contentHash": "eab075b73863b86380694a0061175aca",
       "sourceName": "contracts/RepRewCalculator.sol",
       "solcConfig": {
         "version": "0.8.4",

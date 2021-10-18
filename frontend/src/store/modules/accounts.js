@@ -91,7 +91,6 @@ const mutations = {
   },
 
   setWeb3ModalInstance(state, w3Modal) {
-    console.log("trace")
     state.web3Modal = w3Modal;
   }
 
@@ -124,7 +123,6 @@ const actions = {
       actions.fetchActiveBalance({ commit });
     }
 
-    console.log("trace")
     commit("setWeb3ModalInstance", w3Modal);
     dispatch("contracts/getQuestions", null,  { root: true });
 
@@ -180,5 +178,4 @@ const accounts = {
 }
 
 
-console.log("hello from store/accounts");
 export default accounts;

@@ -20,6 +20,7 @@ contract Questions {
     bool active;
     string stimulus;
     uint ansCount;
+    string answer;
   }
 
   event QuestionCreated(uint _questionId, string _stimulus);
@@ -42,15 +43,21 @@ contract Questions {
   //getQuestionList - returns a list of question indices
   function getQuestionList() public view returns (Question[] memory) {
 
-    Question[] memory activeQs = new Question[](_numActiveQuestions);
+    /* Question[] memory activeQs = new Question[](_numActiveQuestions); */
+    Question[] memory qs = new Question[](_numQuestions);
 
-    for(uint i = 0; i < _numActiveQuestions; i++) {
+    for(uint i = 0; i < _numQuestions; i++) {
+      qs[i] = _questions[i];
+    }
+
+    return qs;
+    /* for(uint i = 0; i < _numActiveQuestions; i++) {
       if(_questions[i].active) {
         activeQs[i] = _questions[i];
       }
     }
 
-    return activeQs;
+    return activeQs; */
   }
 
   /* function getQuestion(uint qId) public view returns (Question memory) {
@@ -63,7 +70,7 @@ contract Questions {
     //Permissions check done in api method
 
     console.log("questionID: %s", _numQuestions);
-    _questions[_numQuestions] = Question(_numQuestions, true, stim, 0);
+    _questions[_numQuestions] = Question(_numQuestions, true, stim, 0, '');
 
 
     //Emit event "New question opened"
@@ -111,9 +118,11 @@ contract Questions {
     //emit a reward event
   } */
 
-  function closeQuestion(uint qId) public {
+  function closeQuestion(uint qId, string memory answer) public {
     //persmission check in interface method
     _questions[qId].active = false;
+    _questions[qId].answer = answer;
+
     _numActiveQuestions--;
 
     /* processRewards(); */
