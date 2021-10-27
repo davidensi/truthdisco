@@ -6,11 +6,13 @@
       QuestionID: {{ qId }}
     </template>
     <template #subtitle>
-      {{ stimulus }}
+      CID: {{ stimulus }}
+      <h3 v-if="!active">Calculated answer: {{ answer }}</h3>
     </template>
     <template #footer>
-      <div align="right" class="p-grid">
-        <Button @click="goToQResponse" label="Submit response" class="p-col-12 p-button-sm" />
+      <div align="right" class="">
+        <Button @click="viewImage" label="View image" style="margin-right:.5em" class="p-cl-6 p-button-sm" />
+        <Button v-if="active" @click="goToQResponse" label="Submit response" class="p-co-6 p-button-sm" />
       </div>
     </template>
   </Card>
@@ -25,7 +27,9 @@
     name: 'UserQuestionCard',
     props: {
       qId: Number,
-      stimulus: String
+      stimulus: String,
+      active: Boolean,
+      answer: String,
     },
     data: function() {
       return {
@@ -37,6 +41,9 @@
     },
     methods: {
       ...mapActions("contracts", [ "submitAnswer" ]),
+      viewImage: function() {
+        window.open("https://" + this.stimulus + ".ipfs.dweb.link")
+      },
       goToQResponse: function() {
         console.log(this.qId)
         this.$router.push({ name: 'QuestionResponse', params: { qId: parseInt(this.qId), stimulus: this.stimulus }});

@@ -36,8 +36,8 @@
       ]
     },
     "/home/davidensi/code/truthdisco_2/contracts/TruthDisco.sol": {
-      "lastModificationDate": 1634526666002,
-      "contentHash": "a67e1d886144a842b364c287c7aabf4d",
+      "lastModificationDate": 1634591492690,
+      "contentHash": "5f3bdf6bc4d0c2b145c802a21f68a3c4",
       "sourceName": "contracts/TruthDisco.sol",
       "solcConfig": {
         "version": "0.8.4",
@@ -64,6 +64,9 @@
       "imports": [
         "./Modules/Reputations.sol",
         "./Modules/Questions.sol",
+        "./Token/IERC20.sol",
+        "./Token/extensions/IERC20Metadata.sol",
+        "./Token/utils/Context.sol",
         "hardhat/console.sol"
       ],
       "versionPragmas": [
@@ -73,43 +76,9 @@
         "TruthDisco"
       ]
     },
-    "/home/davidensi/code/truthdisco_2/contracts/utils/Context.sol": {
-      "lastModificationDate": 1628387798808,
-      "contentHash": "d029e79026d9f56ca95bbd0559d3914a",
-      "sourceName": "contracts/utils/Context.sol",
-      "solcConfig": {
-        "version": "0.8.4",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.4"
-      ],
-      "artifacts": [
-        "Context"
-      ]
-    },
     "/home/davidensi/code/truthdisco_2/contracts/Token/DiscoCoin.sol": {
-      "lastModificationDate": 1633503206923,
-      "contentHash": "41b17c5a832f40bdc3917fc0983d8573",
+      "lastModificationDate": 1634531239658,
+      "contentHash": "1c5ca51ad722ddfa25d776610354382f",
       "sourceName": "contracts/Token/DiscoCoin.sol",
       "solcConfig": {
         "version": "0.8.4",
@@ -136,7 +105,7 @@
       "imports": [
         "./IERC20.sol",
         "./extensions/IERC20Metadata.sol",
-        "./../utils/Context.sol"
+        "./utils/Context.sol"
       ],
       "versionPragmas": [
         "^0.8.4"
@@ -353,6 +322,40 @@
       ],
       "artifacts": [
         "RepRewCalculator"
+      ]
+    },
+    "/home/davidensi/code/truthdisco_2/contracts/Token/utils/Context.sol": {
+      "lastModificationDate": 1628387798808,
+      "contentHash": "d029e79026d9f56ca95bbd0559d3914a",
+      "sourceName": "contracts/Token/utils/Context.sol",
+      "solcConfig": {
+        "version": "0.8.4",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.4"
+      ],
+      "artifacts": [
+        "Context"
       ]
     }
   }

@@ -64,35 +64,27 @@ async function main() {
 
   /* The token doesn't need publishing as it will be managed by the td contract
   ** The address will need to be added to the wallet */
-  const tokenFactory = await ethers.getContractFactory("DiscoCoin");
-  const tokenContract = await tokenFactory.deploy("DiscoCoin", "DSC");
+  // const tokenFactory = await ethers.getContractFactory("DiscoCoin");
+  // const tokenContract = await tokenFactory.deploy("DiscoCoin", "DSC");
 
 
   const repRewCalcFactory = await ethers.getContractFactory("RepRewCalculator");
   const repRewCalcContract = await repRewCalcFactory.deploy();
+
   fs.copyFileSync(
     path.join(__dirname, "../artifacts/contracts/" + "RepRewCalculator" + ".sol/" + "RepRewCalculator" + ".json"), //source
     path.join(__dirname, "../frontend/src/contracts/" + "RepRewCalculator" + ".json") // destination
   );
 
-
-  console.log(
-    "DiscoCoin deployed to address: ",
-    tokenContract.address
-  );
-
   const tdName = "TruthDisco";
+  const tokenName = "RepCoin";
+  const tokenSymbol = "REP";
   const PUBLICKEY = "mtrHp1WHZM9rxF2Ilot9Hie5XmQcKCf7oDQ1DpGkTSI=";
-  const tdFactory = await ethers.getContractFactory(tdName);
-  const tdContract = await tdFactory.deploy(tokenContract.address, PUBLICKEY);
 
-  // const publicKey = await .provider.request({
-    // method: 'eth_getEncryptionPublicKey',
-    // params: [tdContract.signer.address],
-  // })
+  const tdFactory = await ethers.getContractFactory(tdName);
+  const tdContract = await tdFactory.deploy(PUBLICKEY, tokenName, tokenSymbol);
 
   await publishContract(tdContract, tdName, networkData.chainId, PUBLICKEY, repRewCalcContract.address);
-  await tokenContract.setManager(tdContract.address);
 
 }
 

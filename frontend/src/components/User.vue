@@ -6,6 +6,8 @@
     v-for="question in getQuestionList" :key="question.qId"
       :qId="question.id.toNumber()"
       :stimulus="question.stimulus"
+      :active="question.active"
+      :answer="question.answer"
       ></user-question-card>
   </div>
 

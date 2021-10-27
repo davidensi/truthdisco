@@ -26,6 +26,7 @@
     props: {
       qId: Number,
       stimulus: String
+
     },
     data: function() {
       return {
