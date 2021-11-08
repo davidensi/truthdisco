@@ -1,8 +1,5 @@
 # truthdisco - decentralised truth-discovery.
 
-This system was developed as part of my masters thesis at the University of Queensland.
-
-
 To install the node software (hardhat etc):
 
 npm install
